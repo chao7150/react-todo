@@ -1,3 +1,5 @@
+練習用アプリです。自分で書くことに意味があるのでプルリクエストは送らないでください。指摘はissueでください。
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
