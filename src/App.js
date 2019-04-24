@@ -1,10 +1,21 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Column from './Column'
 
 const App = () => {
-  const [customs, setCustoms] = useState(['Dota2', 'diary', 'programming'])
+  const [customs, setCustoms] = useState(() => {
+    const initialState = localStorage.getItem('customs')
+    if (!initialState) {
+      return []
+    } else {
+    return initialState.split(',')
+    }
+  })
   const [todos, setTodos] = useState([])
+
+  useEffect(() => {
+    localStorage.setItem('customs', customs.join(','))
+  })
 
   return (
     <div className="App">
