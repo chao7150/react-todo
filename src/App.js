@@ -1,6 +1,6 @@
 import React, { useState }from 'react';
 import './App.css';
-import Column from './column'
+import Column from './Column'
 
 const App = () => {
   const [customs, setCustoms] = useState(['Dota2', 'diary', 'programming'])
