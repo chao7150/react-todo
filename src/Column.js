@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 const Column = (props) => {
   const [inputValue, setInputValue] = useState('')
 
-  const listItems = props.contents.map((content) => {
-    return <li>{content}</li>
+  const listItems = props.contents.map((content, index) => {
+    return <li key={index}>{content}</li>
   })
   const handleAddItem = () => {
     if (inputValue === '') {
