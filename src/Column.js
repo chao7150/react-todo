@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
+import { generate } from 'shortid'
 
 const Column = props => {
   const [inputValue, setInputValue] = useState('')
 
-  const listItems = props.contents.map((content, index) => {
-    return <li key={index}>{content}</li>
+  const listItems = props.contents.map(content => {
+    return <li key={props.type + content.id}>{content.task}</li>
   })
   const handleAddItem = () => {
     if (inputValue === '') {
       return
     }
-    props.onAddItem(inputValue)
+    props.onAddItem({ task: inputValue, id: generate() })
     setInputValue('')
   }
 
