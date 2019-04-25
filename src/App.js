@@ -1,37 +1,36 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import './App.css'
 import Column from './Column'
+import store from 'store'
+import defaultsPlugin from 'store/plugins/defaults'
 
 const App = () => {
   const [customs, setCustoms] = useState(() => {
-    const initialState = localStorage.getItem('customs')
-    if (!initialState) {
-      return []
-    } else {
-    return initialState.split(',')
-    }
+    store.addPlugin(defaultsPlugin)
+    store.defaults({ customs: [] })
+    return store.get('customs')
   })
   const [todos, setTodos] = useState([])
 
   useEffect(() => {
-    localStorage.setItem('customs', customs.join(','))
+    store.set('customs', customs)
   })
 
   return (
     <div className="App">
       <Column
-        type='customs'
+        type="customs"
         contents={customs}
-        onAddItem={(item) => setCustoms([item, ...customs])}
+        onAddItem={item => setCustoms([item, ...customs])}
         onAddAll={() => setTodos([...customs, ...todos])}
       />
       <Column
-        type='todos'
+        type="todos"
         contents={todos}
-        onAddItem={(item) => setTodos([item, ...todos])}
+        onAddItem={item => setTodos([item, ...todos])}
       />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
