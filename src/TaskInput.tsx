@@ -28,7 +28,9 @@ export const TaskInput = (props: TaskInputProps) => {
           }
         }}
       />
-      <button onClick={handleAddItem}>add</button>
+      <button tabIndex={-1} onClick={handleAddItem}>
+        add
+      </button>
     </div>
   )
 }
