@@ -6,13 +6,21 @@ interface ColumnProps {
   type: string
   contents: Item[]
   onAddItem: (item: Item) => void
+  deleteItem: (id: string) => void
   onAddAll?: () => void
 }
 
 export const Column = (props: ColumnProps) => {
   const listItems = props.contents.map(
-    (content: { id: React.Key; task: React.ReactNode }) => {
-      return <li key={props.type + content.id}>{content.task}</li>
+    (content: { id: string; task: string }) => {
+      return (
+        <tr key={props.type + content.id}>
+          <td>
+            <button onClick={e => props.deleteItem(content.id)}>del</button>
+          </td>
+          <td>{content.task}</td>
+        </tr>
+      )
     }
   )
 
@@ -20,7 +28,9 @@ export const Column = (props: ColumnProps) => {
     <div>
       <h2>{props.type}</h2>
       <TaskInput onAddItem={props.onAddItem} />
-      <ul>{listItems}</ul>
+      <table>
+        <tbody>{listItems}</tbody>
+      </table>
       {props.type === 'customs' ? (
         <button onClick={props.onAddAll}>add all</button>
       ) : null}

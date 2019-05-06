@@ -23,12 +23,18 @@ export const App = () => {
         type="customs"
         contents={customs}
         onAddItem={(item: Item) => setCustoms([item, ...customs])}
+        deleteItem={(id: string) =>
+          setCustoms(customs.filter((item: Item) => item.id !== id))
+        }
         onAddAll={() => setTodos([...customs, ...todos])}
       />
       <Column
         type="todos"
         contents={todos}
         onAddItem={(item: Item) => setTodos([item, ...todos])}
+        deleteItem={(id: string) =>
+          setTodos(todos.filter((item: Item) => item.id !== id))
+        }
       />
     </div>
   )
