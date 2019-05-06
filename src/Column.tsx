@@ -28,7 +28,15 @@ const Column = (props: Props) => {
   return (
     <div>
       <h2>{props.type}</h2>
-      <input value={inputValue} onChange={e => setInputValue(e.target.value)} />
+      <input
+        value={inputValue}
+        onChange={e => setInputValue(e.target.value)}
+        onKeyUp={e => {
+          if (e.key === 'Enter') {
+            handleAddItem()
+          }
+        }}
+      />
       <button onClick={handleAddItem}>add</button>
       <ul>{listItems}</ul>
       {props.type === 'customs' ? (
