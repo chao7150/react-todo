@@ -1,13 +1,13 @@
 import * as React from 'react'
 import * as store from 'store'
-import Column from './Column'
+import { Column } from './Column'
 
 export interface Item {
   task: string
   id: string
 }
 
-const App = () => {
+export const App = () => {
   const [customs, setCustoms] = React.useState(() => {
     return store.get('customs', [])
   })
@@ -33,5 +33,3 @@ const App = () => {
     </div>
   )
 }
-
-export default App
