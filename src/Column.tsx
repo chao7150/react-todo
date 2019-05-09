@@ -10,11 +10,11 @@ interface ColumnProps {
   onAddAll?: () => void
 }
 
-export const Column = (props: ColumnProps) => {
+export const Column = ({ type, ...props }: ColumnProps) => {
   const listItems = props.contents.map(
     (content: { id: string; task: string }) => {
       return (
-        <tr key={props.type + content.id}>
+        <tr key={type + content.id}>
           <td>
             <button onClick={e => props.deleteItem(content.id)}>del</button>
           </td>
@@ -26,12 +26,12 @@ export const Column = (props: ColumnProps) => {
 
   return (
     <div>
-      <h2>{props.type}</h2>
+      <h2>{type}</h2>
       <TaskInput onAddItem={props.onAddItem} />
       <table>
         <tbody>{listItems}</tbody>
       </table>
-      {props.type === 'customs' ? (
+      {type === 'customs' ? (
         <button onClick={props.onAddAll}>add all</button>
       ) : null}
     </div>

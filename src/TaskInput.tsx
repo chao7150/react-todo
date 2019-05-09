@@ -6,14 +6,14 @@ interface TaskInputProps {
   onAddItem: (item: Item) => void
 }
 
-export const TaskInput = (props: TaskInputProps) => {
+export const TaskInput = ({ onAddItem }: TaskInputProps) => {
   const [inputValue, setInputValue] = React.useState('')
 
   const handleAddItem = () => {
     if (inputValue === '') {
       return
     }
-    props.onAddItem({ task: inputValue, id: shortid.generate() })
+    onAddItem({ task: inputValue, id: shortid.generate() })
     setInputValue('')
   }
 

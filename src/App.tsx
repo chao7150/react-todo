@@ -17,24 +17,27 @@ export const App = () => {
     store.set('customs', customs)
   })
 
+  const AddItemFactory = (state: Item[], setState: Function) => (item: Item) =>
+    setState([item, ...state])
+
+  const deleteItemFactory = (state: Item[], setState: Function) => (
+    id: String
+  ) => setState(state.filter((item: Item) => item.id !== id))
+
   return (
     <div className="App">
       <Column
         type="customs"
         contents={customs}
-        onAddItem={(item: Item) => setCustoms([item, ...customs])}
-        deleteItem={(id: string) =>
-          setCustoms(customs.filter((item: Item) => item.id !== id))
-        }
+        onAddItem={AddItemFactory(customs, setCustoms)}
+        deleteItem={deleteItemFactory(customs, setCustoms)}
         onAddAll={() => setTodos([...customs, ...todos])}
       />
       <Column
         type="todos"
         contents={todos}
-        onAddItem={(item: Item) => setTodos([item, ...todos])}
-        deleteItem={(id: string) =>
-          setTodos(todos.filter((item: Item) => item.id !== id))
-        }
+        onAddItem={AddItemFactory(todos, setTodos)}
+        deleteItem={deleteItemFactory(todos, setTodos)}
       />
     </div>
   )
