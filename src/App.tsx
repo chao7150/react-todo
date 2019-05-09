@@ -17,7 +17,7 @@ export const App = () => {
     store.set('customs', customs)
   })
 
-  const AddItemFactory = (state: Item[], setState: Function) => (item: Item) =>
+  const addItemFactory = (state: Item[], setState: Function) => (item: Item) =>
     setState([item, ...state])
 
   const deleteItemFactory = (state: Item[], setState: Function) => (
@@ -29,14 +29,14 @@ export const App = () => {
       <Column
         type="customs"
         contents={customs}
-        onAddItem={AddItemFactory(customs, setCustoms)}
+        onAddItem={addItemFactory(customs, setCustoms)}
         deleteItem={deleteItemFactory(customs, setCustoms)}
         onAddAll={() => setTodos([...customs, ...todos])}
       />
       <Column
         type="todos"
         contents={todos}
-        onAddItem={AddItemFactory(todos, setTodos)}
+        onAddItem={addItemFactory(todos, setTodos)}
         deleteItem={deleteItemFactory(todos, setTodos)}
       />
     </div>
